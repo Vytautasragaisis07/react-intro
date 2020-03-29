@@ -48,7 +48,7 @@ function App() {
   }
   
   function handleRecipeChange(id, recipe) {
-    const newRecipe = [...recipes]
+    const newRecipes = [...recipes]
     const index = newRecipes.findIndex(r => recipe.id === id)
     newRecipes[index] = recipe
     setRecipes(newRecipes)
