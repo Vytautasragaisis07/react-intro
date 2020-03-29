@@ -10,7 +10,8 @@ const LOCAL_STORAGE_KEY = 'cookingWithReact.recipes'
 function App() {
   const [selectedRecipeId, setSelectedRecipeId] = useState()
   const [recipes, setRecipes] = useState(sampleRecipes)
-  const selectedRecipe = recipes.find(recipe => recipe.id === selectedRecipeId)
+  const selectedRecipe = recipes.find(recipe => recipe.id ===
+      selectedRecipeId)
 
   useEffect(() => {
     const recipeJSON = localStorage.getItem(LOCAL_STORAGE_KEY)
@@ -36,25 +37,30 @@ function App() {
   function handleRecipeAdd() {
     const newRecipe= {
       id: uuidv4(),
-      name: 'New',
+      name: '',
       servings: 1,
-      cookTime: '1:00',
-      instructions: 'Instr.',
+      cookTime: '',
+      instructions: '',
       ingredients: [
-        {id: uuidv4(), name: 'Name', amount: '1 Tbs'}
+        {id: uuidv4(), name: '', amount: ''}
       ]
     }
+    setSelectedRecipeId(newRecipe.id)
     setRecipes([...recipes, newRecipe])
   }
+
   
   function handleRecipeChange(id, recipe) {
     const newRecipes = [...recipes]
-    const index = newRecipes.findIndex(r => recipe.id === id)
+    const index = newRecipes.findIndex(r => r.id === id)
     newRecipes[index] = recipe
     setRecipes(newRecipes)
   }
   
   function handleRecipeDelete(id) {
+    if (selectedRecipeId != null && selectedRecipeId === id){
+      setSelectedRecipeId(undefined)
+    }
     setRecipes(recipes.filter(recipe => recipe.id !== id))
   }
   
