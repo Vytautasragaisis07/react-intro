@@ -14,7 +14,8 @@ export default function RecipeList(props) {
                 return (
                     <Recipe
                         key={recipe.id}
-                        handleRecipeDelete={handleRecipeDelete}
+                        handleRecipeDelete=
+                        {handleRecipeDelete}
                         {...recipe}
                     />
                 )
